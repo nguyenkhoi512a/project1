@@ -20,22 +20,24 @@ const LoginComponent = () => {
     password: "",
   });
 
+  const [showStatusLogin, setShowStatusLogin] = useState();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleClick = () => {
-      if(user.username === "admin" && user.password === "123"){
-          console.log("SUCCESS");
-          navigate("/todos");
-      }else{
-        console.log("Fail");
-
-      }
-
+    if (user.username === "admin" && user.password === "123") {
+      navigate(`/welcome/${user.username}`);
+    } else {
+      setShowStatusLogin(false);
+    }
   };
-
+  // let loginStatus;
+  // if (showStatusLogin === false) {
+  //   loginStatus = <div style={{color: "red"}}>Login False</div>;
+  // }
   return (
     <div>
       User Name:{" "}
@@ -55,6 +57,8 @@ const LoginComponent = () => {
       />
       <br />
       <button onClick={handleClick}>Login</button>
+      <br />
+      {showStatusLogin === false && <>Login False</>}
     </div>
   );
 };
