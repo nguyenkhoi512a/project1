@@ -24,26 +24,26 @@ const ListToDoComponent = () => {
   return (
     <div>
       <h1>List Todos</h1>
-      <table style={{ border: "1px solid black" }}>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Description</th>
-            <th>Target Date</th>
-            <th>Is Completed</th>
-          </tr>
-        </thead>
-        <tbody>
-          {todos.map((todo) => (
-            <tr key={todo.id}>
-              <td>{todo.id}</td>
-              <td>{todo.description}</td>
-              <td>{todo.targetDate.toString()}</td>
-              <td>{todo.done.toString()}</td>
+      <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>description</th>
+              <th>Target Date</th>
+              <th>Is Completed?</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {todos.map((todo) => (
+              <tr>
+                <td>{todo.description}</td>
+                <td>{todo.targetDate.toString()}</td>
+                <td>{todo.done.toString()}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { registerSuccessfullLogin } from "../todo/AuthenticationService";
 
 const LoginComponent = () => {
   //   const [userName, setUserName] = useState("");
@@ -29,6 +30,7 @@ const LoginComponent = () => {
 
   const handleClick = () => {
     if (user.username === "admin" && user.password === "123") {
+      registerSuccessfullLogin(user);
       navigate(`/welcome/${user.username}`);
     } else {
       setShowStatusLogin(false);
@@ -40,7 +42,9 @@ const LoginComponent = () => {
   // }
   return (
     <div>
-      User Name:{" "}
+      <label for="username" class="col-sm-1 col-form-label">
+        User Name:
+      </label>
       <input
         type="text"
         name="username"
@@ -48,7 +52,9 @@ const LoginComponent = () => {
         onChange={handleChange}
       />
       <br />
-      Password:{" "}
+      <label for="password" class="col-sm-1 col-form-label">
+        Password:
+      </label>
       <input
         type="password"
         name="password"
@@ -56,7 +62,9 @@ const LoginComponent = () => {
         onChange={handleChange}
       />
       <br />
-      <button onClick={handleClick}>Login</button>
+      <button className="btn btn-primary" onClick={handleClick}>
+        Login
+      </button>
       <br />
       {showStatusLogin === false && <>Login False</>}
     </div>
